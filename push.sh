@@ -1,5 +1,9 @@
-for config_dir in ./*/; do
-  name=${config_dir:2}
-  rm -rf $name
-  rsync -az ~/.config/$name $name
+NOW=$(date "+%d %b %Y")
+rm -rf dotfiles/*
+for config_dir in dotfiles/*/; do
+  echo rsync -az ~/.config/$config_dir $config_dir
 done
+
+git add .
+git commit -am "Update: $NOW"
+git push -u origin master
