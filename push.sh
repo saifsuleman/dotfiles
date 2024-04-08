@@ -1,7 +1,8 @@
 NOW=$(date "+%d %b %Y")
-rm -rf dotfiles/*
 for config_dir in dotfiles/*/; do
-  rsync -az ~/.config/$config_dir $config_dir
+  NAME=${config_dir:9}
+  rm -rf $config_dir
+  rsync -az ~/.config/$NAME dotfiles/$NAME
 done
 
 git add .
