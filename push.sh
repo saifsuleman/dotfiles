@@ -1,7 +1,7 @@
 NOW=$(date "+%d %b %Y")
 rm -rf dotfiles/*
 for config_dir in dotfiles/*/; do
-  echo rsync -az ~/.config/$config_dir $config_dir
+  rsync -az ~/.config/$config_dir $config_dir
 done
 
 git add .
