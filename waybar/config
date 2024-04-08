@@ -13,6 +13,7 @@
     "modules-right": [
         "tray",
         "memory",
+        "cpu",
         "network",
         "pulseaudio",
         "battery",
