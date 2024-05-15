@@ -29,7 +29,7 @@ size = 10.0
 family = "Roboto mono"
 
 [window]
-opacity = 0.9
+opacity = 0.8
 
 [window.padding]
 x = 8
