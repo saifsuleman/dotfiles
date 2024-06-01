@@ -26,10 +26,10 @@ foreground = "#dedede"
 size = 10.0
 
 [font.normal]
-family = "Roboto mono"
+family = "SF Mono Nerd Font"
 
 [window]
-opacity = 0.8
+opacity = 0.9
 
 [window.padding]
 x = 8
