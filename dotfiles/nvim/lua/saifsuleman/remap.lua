@@ -41,3 +41,6 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("!./push.sh")
 end)
 
+vim.keymap.set("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true })
+vim.keymap.set("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
+
