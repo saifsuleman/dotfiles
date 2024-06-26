@@ -19,7 +19,7 @@ white = "#eeffff"
 yellow = "#d4a067"
 
 [colors.primary]
-background = "#101010"
+background = "#1b1b25"
 foreground = "#dedede"
 
 [font]
@@ -29,7 +29,7 @@ size = 10.0
 family = "SF Mono Nerd Font"
 
 [window]
-opacity = 0.85
+opacity = 0.9
 
 [window.padding]
 x = 8

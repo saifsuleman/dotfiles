@@ -29,10 +29,10 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
+                "jdtls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
@@ -44,7 +44,7 @@ return {
                         capabilities = capabilities,
                         settings = {
                             Lua = {
-				    runtime = { version = "Lua 5.1" },
+                                runtime = { version = "Lua 5.1" },
                                 diagnostics = {
                                     globals = { "vim", "it", "describe", "before_each", "after_each" },
                                 }
@@ -52,6 +52,84 @@ return {
                         }
                     }
                 end,
+
+                ["tsserver"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.tsserver.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            typescript = {
+                                preferences = {
+                                    importModuleSpecifierPreference = "non-relative"
+                                }
+                            }
+                        }
+                    }
+                end,
+
+                ["vtsls"] = function ()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.vtsls.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            typescript = {
+                                suggestionActions = {
+                                    enabled = false,
+                                },
+                                inlayHints = {
+                                    parameterNames = {
+                                        enabled = "all",
+                                    },
+                                    parameterTypes = {
+                                        enabled = true,
+                                    },
+                                    variableTypes = {
+                                        enabled = true
+                                    },
+                                    functionLikeReturnTypes = {
+                                        enabled = true
+                                    },
+                                }
+                            }
+                        }
+                    }
+                end,
+
+                ["jdtls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.jdtls.setup({
+                        capabilities = capabilities,
+                        root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", "build.gradle.kts", ".git") or vim.fn.getcwd(),
+                        settings = {
+                          java = {
+                            eclipse = { downloadSources = true },
+                            configuration = { updateBuildConfiguration = "interactive" },
+                            maven = { downloadSources = true },
+                            implementationsCodeLens = { enabled = true },
+                            referencesCodeLens = { enabled = true },
+                            inlayHints = { parameterNames = { enabled = "all" } },
+                            signatureHelp = { enabled = true },
+                            completion = {
+                              favoriteStaticMembers = {
+                                "org.hamcrest.MatcherAssert.assertThat",
+                                "org.hamcrest.Matchers.*",
+                                "org.hamcrest.CoreMatchers.*",
+                                "org.junit.jupiter.api.Assertions.*",
+                                "java.util.Objects.requireNonNull",
+                                "java.util.Objects.requireNonNullElse",
+                                "org.mockito.Mockito.*",
+                              },
+                            },
+                            sources = {
+                              organizeImports = {
+                                starThreshold = 9999,
+                                staticStarThreshold = 9999,
+                              },
+                            },
+                          },
+                        },
+                    })
+                end
             }
         })
 
@@ -87,5 +165,5 @@ return {
                 prefix = "",
             },
         })
-    end
+    end,
 }
