@@ -295,3 +295,5 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+bindsym XF86TouchpadToggle exec touchpad_toggle.sh
